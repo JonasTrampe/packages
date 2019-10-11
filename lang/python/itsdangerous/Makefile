@@ -20,7 +20,9 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-$(PKG_NAME)-$(PKG_VERSION)
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 include $(INCLUDE_DIR)/package.mk
+
 include ../python3-package.mk
+include ../python-package.mk
 
 define Package/python3-itsdangerous
   SECTION:=lang
@@ -36,5 +38,22 @@ define Package/python3-itsdangerous/description
 Various helpers to pass trusted data to untrusted environments and back.
 endef
 
+define Package/python-itsdangerous
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://github.com/mitsuhiko/itsdangerous
+  TITLE:=python-itsdangerous
+  DEPENDS:=+python-light
+  VARIANT:=python
+endef
+
+define Package/python-itsdangerous/description
+Various helpers to pass trusted data to untrusted environments and back.
+endef
+
 $(eval $(call Py3Package,python3-itsdangerous))
 $(eval $(call BuildPackage,python3-itsdangerous))
+
+$(eval $(call PyPackage,python-itsdangerous))
+$(eval $(call BuildPackage,python-itsdangerous))

@@ -21,6 +21,7 @@ PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$
 
 include $(INCLUDE_DIR)/package.mk
 include ../python3-package.mk
+include ../python2-package.mk
 
 define Package/python3-markupsafe
   SECTION:=lang
@@ -36,5 +37,22 @@ define Package/python3-markupsafe/description
 MarkupSafe implements a XML/HTML/XHTML Markup safe string for Python
 endef
 
+define Package/python-markupsafe
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://github.com/pallets/markupsafe/
+  TITLE:=python3-markupsafe
+  DEPENDS:=+python-light
+  VARIANT:=python
+endef
+
+define Package/python-markupsafe/description
+MarkupSafe implements a XML/HTML/XHTML Markup safe string for Python
+endef
+
 $(eval $(call Py3Package,python3-markupsafe))
 $(eval $(call BuildPackage,python3-markupsafe))
+
+$(eval $(call PyPackage,python-markupsafe))
+$(eval $(call BuildPackage,python-markupsafe))

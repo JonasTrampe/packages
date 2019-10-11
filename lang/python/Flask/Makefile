@@ -21,6 +21,7 @@ PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$
 
 include $(INCLUDE_DIR)/package.mk
 include ../python3-package.mk
+include ../python2-package.mk
 
 define Package/python3-flask
   SECTION:=lang
@@ -39,5 +40,25 @@ Flask is a microframework for Python based on Werkzeug, Jinja 2 and good
 intentions. And before you ask: It.s BSD licensed!
 endef
 
+define Package/python-flask
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://github.com/pallets/flask/
+  TITLE:=python-flask
+  DEPENDS:=+python-asyncio +python-click +python-codecs +python-decimal \
+           +python-itsdangerous +python-jinja2 +python-light +python-logging \
+           +python-markupsafe +python-multiprocessing +python-werkzeug
+  VARIANT:=python
+endef
+
+define Package/python-flask/description
+Flask is a microframework for Python based on Werkzeug, Jinja 2 and good
+intentions. And before you ask: It.s BSD licensed!
+endef
+
 $(eval $(call Py3Package,python3-flask))
 $(eval $(call BuildPackage,python3-flask))
+
+$(eval $(call PyPackage,python-flask))
+$(eval $(call BuildPackage,python-flask))

@@ -20,7 +20,9 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-$(PKG_NAME)-$(PKG_VERSION)
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 include $(INCLUDE_DIR)/package.mk
+
 include ../python3-package.mk
+include ../python-package.mk
 
 define Package/python3-jinja2
   SECTION:=lang
@@ -38,5 +40,24 @@ unicode support, an optional integrated sandboxed execution
 environment, widely used and BSD licensed.
 endef
 
+define Package/python-jinja2
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://jinja.pocoo.org/
+  TITLE:=python-jinja
+  DEPENDS:=+python-light +python-markupsafe
+  VARIANT:=python
+endef
+
+define Package/python-jinja2/description
+Jinja2 is a full featured template engine for Python. It has full
+unicode support, an optional integrated sandboxed execution
+environment, widely used and BSD licensed.
+endef
+
 $(eval $(call Py3Package,python3-jinja2))
 $(eval $(call BuildPackage,python3-jinja2))
+
+$(eval $(call PyPackage,python-jinja2))
+$(eval $(call BuildPackage,python-jinja2))

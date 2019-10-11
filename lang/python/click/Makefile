@@ -36,5 +36,22 @@ define Package/python3-click/description
 A simple wrapper around optparse for powerful command line utilities.
 endef
 
+define Package/python-click
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://github.com/mitsuhiko/click
+  TITLE:=python-click
+  DEPENDS:=+python-light
+  VARIANT:=python
+endef
+
+define Package/python-click/description
+A simple wrapper around optparse for powerful command line utilities.
+endef
+
 $(eval $(call Py3Package,python3-click))
 $(eval $(call BuildPackage,python3-click))
+
+$(eval $(call PyPackage,python-click))
+$(eval $(call BuildPackage,python-click))

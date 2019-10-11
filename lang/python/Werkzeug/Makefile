@@ -20,7 +20,9 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-$(PKG_NAME)-$(PKG_VERSION)
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 include $(INCLUDE_DIR)/package.mk
+
 include ../python3-package.mk
+include ../python-package.mk
 
 define Package/python3-werkzeug
   SECTION:=lang
@@ -38,5 +40,24 @@ Werkzeug
 The Python WSGI Utility Library
 endef
 
+define Package/python-werkzeug
+  SECTION:=lang
+  CATEGORY:=Languages
+  SUBMENU:=Python
+  URL:=http://werkzeug.pocoo.org/
+  TITLE:=python-werkzeug
+  DEPENDS:=+python-light +python-email
+  VARIANT:=python
+endef
+
+define Package/python-werkzeug/description
+Werkzeug
+
+The Python WSGI Utility Library
+endef
+
 $(eval $(call Py3Package,python3-werkzeug))
 $(eval $(call BuildPackage,python3-werkzeug))
+
+$(eval $(call PyPackage,python-werkzeug))
+$(eval $(call BuildPackage,python-werkzeug))
