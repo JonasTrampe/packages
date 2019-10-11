@@ -21,7 +21,7 @@ PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$
 
 include $(INCLUDE_DIR)/package.mk
 include ../python3-package.mk
-include ../python2-package.mk
+include ../python-package.mk
 
 define Package/python3-markupsafe
   SECTION:=lang
