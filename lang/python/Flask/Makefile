@@ -46,7 +46,7 @@ define Package/python-flask
   SUBMENU:=Python
   URL:=http://github.com/pallets/flask/
   TITLE:=python-flask
-  DEPENDS:=+python-asyncio +python-click +python-codecs +python-decimal \
+  DEPENDS:=+python-click +python-codecs +python-decimal \
            +python-itsdangerous +python-jinja2 +python-light +python-logging \
            +python-markupsafe +python-multiprocessing +python-werkzeug
   VARIANT:=python
