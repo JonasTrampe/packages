@@ -55,8 +55,6 @@ Greenlets are provided as a C extension module for the regular unmodified interp
 Greenlets are lightweight coroutines for in-process concurrent programming.
 endef
 
-endef
-
 define Py3Build/Compile
 	$(call Build/Compile/Py3Mod,,\
 		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
