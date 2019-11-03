@@ -27,8 +27,7 @@ define Package/python3-greenlet
   CATEGORY:=Languages
   SUBMENU:=Python
   TITLE:=python3-greenlet
-  DEPENDS:=+python3-light
-  VARIANT:=python3
+  DEPENDS:=+python3
 endef
 
 define Package/python3-greenlet/description
