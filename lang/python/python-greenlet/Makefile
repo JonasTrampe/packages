@@ -22,17 +22,12 @@ PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$
 include $(INCLUDE_DIR)/package.mk
 include ../python3-package.mk
 
-define Package/python-greenlet/Default
+define Package/python3-greenlet
   SECTION:=lang
   CATEGORY:=Languages
   SUBMENU:=Python
-  URL:=https://github.com/python-greenlet/greenlet
-endef
-
-define Package/python3-greenlet
-$(call Package/python-greenlet/Default)
   TITLE:=python3-greenlet
-  DEPENDS+=+PACKAGE_python3-greenlet:python3-light
+  DEPENDS:=+python3-light
   VARIANT:=python3
 endef
 
