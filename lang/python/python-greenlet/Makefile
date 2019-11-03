@@ -20,7 +20,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(BUILD_VARIANT)-$(PKG_NAME)-$(PKG_VERSION)
 PKG_UNPACK=$(HOST_TAR) -C $(PKG_BUILD_DIR) --strip-components=1 -xzf $(DL_DIR)/$(PKG_SOURCE)
 
 include $(INCLUDE_DIR)/package.mk
-include ../python-package.mk
 include ../python3-package.mk
 
 define Package/python-greenlet/Default
@@ -30,13 +29,6 @@ define Package/python-greenlet/Default
   URL:=https://github.com/python-greenlet/greenlet
 endef
 
-define Package/python-greenlet
-$(call Package/python-greenlet/Default)
-  TITLE:=python-greenlet
-  DEPENDS+=+PACKAGE_python-greenlet:python-light
-  VARIANT:=python
-endef
-
 define Package/python3-greenlet
 $(call Package/python-greenlet/Default)
   TITLE:=python3-greenlet
@@ -44,7 +36,7 @@ $(call Package/python-greenlet/Default)
   VARIANT:=python3
 endef
 
-define Package/python-greenlet/description
+define Package/python3-greenlet/description
 The greenlet package is a spin-off of Stackless, 
 a version of CPython that supports micro-threads called "tasklets". 
 Tasklets run pseudo-concurrently (typically in a single or a few OS-level threads) 
@@ -63,16 +55,6 @@ Greenlets are provided as a C extension module for the regular unmodified interp
 Greenlets are lightweight coroutines for in-process concurrent programming.
 endef
 
-define Package/python3-greenlet/description
-$(call Package/python-greenlet/description)
-
-(Variant for Python3)
-endef
-
-define PyBuild/Compile
-	$(call Build/Compile/PyMod,,\
-		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
-	)
 endef
 
 define Py3Build/Compile
@@ -80,10 +62,6 @@ define Py3Build/Compile
 		install --prefix="/usr" --root="$(PKG_INSTALL_DIR)" \
 	)
 endef
-
-
-$(eval $(call PyPackage,python-greenlet))
-$(eval $(call BuildPackage,python-greenlet))
 
 $(eval $(call Py3Package,python3-greenlet))
 $(eval $(call BuildPackage,python3-greenlet))
